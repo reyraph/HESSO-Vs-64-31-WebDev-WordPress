@@ -31,7 +31,7 @@ services:
   wordpress:
     build:
       context: .
-      dockerfile: docker/wordpress/Dockerfile
+      dockerfile: Dockerfile
     container_name: wp_app
     restart: unless-stopped
     depends_on:

@@ -23,6 +23,7 @@ wait_for_mysql() {
         -P "${WORDPRESS_DB_HOST##*:}" \
         -u "${WORDPRESS_DB_USER}" \
         -p"${WORDPRESS_DB_PASSWORD}" \
+        --ssl=0 \
         --silent 2>/dev/null; do
         retries=$((retries - 1))
         if [[ $retries -le 0 ]]; then

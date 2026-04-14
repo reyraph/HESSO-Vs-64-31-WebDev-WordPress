@@ -45,10 +45,10 @@ RUN docker-php-ext-configure gd \
 
 # ── Apache config ────────────────────────────────────────────────
 RUN a2enmod rewrite headers expires deflate
-COPY config/apache/wordpress.conf /etc/apache2/sites-available/000-default.conf
+COPY wordpress.conf /etc/apache2/sites-available/000-default.conf
 
 # ── PHP config ───────────────────────────────────────────────────
-COPY config/php/php.ini /usr/local/etc/php/conf.d/wordpress.ini
+COPY php.ini /usr/local/etc/php/conf.d/wordpress.ini
 
 # ── WP-CLI ──────────────────────────────────────────────────────
 RUN curl -fsSL \
@@ -67,7 +67,7 @@ RUN curl -fsSL \
     && chmod -R 755 /var/www/html
 
 # ── Entrypoint ───────────────────────────────────────────────────
-COPY scripts/entrypoint.sh /entrypoint.sh
+COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 80
