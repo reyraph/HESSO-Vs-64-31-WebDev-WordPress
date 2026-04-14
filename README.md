@@ -24,8 +24,7 @@ cp .env.example .env
 # Éditer .env avec vos valeurs
 
 # 3. Construire et démarrer
-make up
-# ou : docker compose up -d --build
+docker compose up -d --build
 ```
 
 ### URLs
