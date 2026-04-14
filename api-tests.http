@@ -1,0 +1,98 @@
+### ═══════════════════════════════════════════════════════════
+###  api-tests.http  –  Tests REST API & GraphQL
+###  Extension VSCode requise : REST Client (humao.rest-client)
+### ═══════════════════════════════════════════════════════════
+
+@baseUrl = http://localhost:8080
+@adminUser = admin
+@adminPass = Admin@Secure2024!
+
+# ──────────────────────────────────────────────────────────────
+# 1. WP REST API v2 – Récupérer les articles
+# ──────────────────────────────────────────────────────────────
+### GET Articles
+GET {{baseUrl}}/wp-json/wp/v2/posts?per_page=5
+Accept: application/json
+
+###
+
+# ──────────────────────────────────────────────────────────────
+# 2. WP REST API v2 – Récupérer les pages
+# ──────────────────────────────────────────────────────────────
+### GET Pages
+GET {{baseUrl}}/wp-json/wp/v2/pages
+Accept: application/json
+
+###
+
+# ──────────────────────────────────────────────────────────────
+# 3. WP REST API v2 – Obtenir un JWT token
+# ──────────────────────────────────────────────────────────────
+### POST /wp-json/jwt-auth/v1/token
+POST {{baseUrl}}/wp-json/jwt-auth/v1/token
+Content-Type: application/json
+
+{
+  "username": "{{adminUser}}",
+  "password": "{{adminPass}}"
+}
+
+###
+
+# ──────────────────────────────────────────────────────────────
+# 4. WP REST API v2 – Créer un article (authentifié)
+#    Remplacer <JWT_TOKEN> par le token obtenu ci-dessus
+# ──────────────────────────────────────────────────────────────
+### POST Article (nécessite JWT)
+@jwtToken = <JWT_TOKEN>
+
+POST {{baseUrl}}/wp-json/wp/v2/posts
+Content-Type: application/json
+Authorization: Bearer {{jwtToken}}
+
+{
+  "title": "Article de test via REST API",
+  "content": "Contenu créé par l'API REST WordPress.",
+  "status": "publish"
+}
+
+###
+
+# ──────────────────────────────────────────────────────────────
+# 5. WPGraphQL – Introspection
+# ──────────────────────────────────────────────────────────────
+### GraphQL Introspection
+POST {{baseUrl}}/graphql
+Content-Type: application/json
+
+{
+  "query": "{ __schema { types { name } } }"
+}
+
+###
+
+# ──────────────────────────────────────────────────────────────
+# 6. WPGraphQL – Query articles
+# ──────────────────────────────────────────────────────────────
+### GraphQL – Posts
+POST {{baseUrl}}/graphql
+Content-Type: application/json
+
+{
+  "query": "{ posts(first: 5) { nodes { id title date excerpt } } }"
+}
+
+###
+
+# ──────────────────────────────────────────────────────────────
+# 7. WPGraphQL – Query pages
+# ──────────────────────────────────────────────────────────────
+### GraphQL – Pages
+POST {{baseUrl}}/graphql
+Content-Type: application/json
+
+{
+  "query": "{ pages { nodes { id title uri content } } }"
+}
+
+###

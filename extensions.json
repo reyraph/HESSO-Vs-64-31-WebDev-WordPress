@@ -1,0 +1,25 @@
+{
+  "recommendations": [
+    // Docker
+    "ms-azuretools.vscode-docker",
+    // YAML / Compose
+    "redhat.vscode-yaml",
+    // PHP
+    "bmewburn.vscode-intelephense-client",
+    "xdebug.php-debug",
+    // REST API testing
+    "humao.rest-client",
+    // GraphQL
+    "graphql.vscode-graphql",
+    "graphql.vscode-graphql-syntax",
+    // Dotenv
+    "mikestead.dotenv",
+    // EditorConfig
+    "editorconfig.editorconfig",
+    // Gitlens
+    "eamodio.gitlens",
+    // Bracket colorization & indent guides (builtin in VSCode 1.80+)
+    // Prettier (optionnel)
+    "esbenp.prettier-vscode"
+  ]
+}

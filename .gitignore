@@ -1,0 +1,16 @@
+# Secrets
+.env
+
+# Volumes locaux éventuels
+volumes/
+data/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# VSCode local
+.vscode/settings.json.local
+
+# Logs
+*.log

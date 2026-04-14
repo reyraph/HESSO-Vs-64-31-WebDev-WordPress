@@ -1,0 +1,49 @@
+{
+  "editor.tabSize": 4,
+  "editor.insertSpaces": true,
+  "editor.formatOnSave": true,
+  "editor.rulers": [100],
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+
+  // YAML (docker-compose)
+  "yaml.schemas": {
+    "https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json": [
+      "docker-compose*.yml",
+      "docker-compose*.yaml"
+    ]
+  },
+
+  // PHP
+  "php.validate.enable": true,
+  "php.suggest.basic": false,
+  "intelephense.environment.phpVersion": "8.3.0",
+
+  // GraphQL
+  "[graphql]": {
+    "editor.formatOnSave": true
+  },
+
+  // Shell scripts
+  "[shellscript]": {
+    "editor.tabSize": 4
+  },
+
+  // REST Client – variable d'environnement
+  "rest-client.environmentVariables": {
+    "local": {
+      "baseUrl": "http://localhost:8080",
+      "adminUser": "admin",
+      "adminPass": "Admin@Secure2024!"
+    }
+  },
+
+  // Docker
+  "docker.defaultRegistryPath": "",
+
+  // Fichiers à exclure de l'explorateur
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/.git": true
+  }
+}
