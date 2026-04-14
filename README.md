@@ -40,9 +40,80 @@
 
 ---
 
+## Obtenir le projet depuis GitHub
+
+### Option 1 — `git clone` (recommandé)
+
+```bash
+# Cloner le dépôt dans un dossier local
+git clone https://github.com/<votre-organisation>/wordpress-docker.git
+
+# Entrer dans le dossier
+cd wordpress-docker
+```
+
+> Remplacer `<votre-organisation>` par votre nom d'utilisateur ou organisation GitHub.
+
+---
+
+### Option 2 — Télécharger l'archive ZIP (sans Git)
+
+1. Ouvrir la page du dépôt sur GitHub :  
+   `https://github.com/<votre-organisation>/wordpress-docker`
+2. Cliquer sur le bouton vert **`<> Code`**
+3. Choisir **Download ZIP**
+4. Décompresser l'archive, puis ouvrir un terminal dans le dossier extrait
+
+```bash
+# macOS / Linux
+unzip wordpress-docker-main.zip
+cd wordpress-docker-main
+
+# Windows (PowerShell)
+Expand-Archive wordpress-docker-main.zip -DestinationPath .
+cd wordpress-docker-main
+```
+
+---
+
+### Option 3 — GitHub CLI
+
+```bash
+# Installer gh si nécessaire : https://cli.github.com
+gh repo clone <votre-organisation>/wordpress-docker
+cd wordpress-docker
+```
+
+---
+
+### Publier votre propre fork sur GitHub
+
+Si vous souhaitez versionner ce projet depuis zéro :
+
+```bash
+# 1. Initialiser Git dans le dossier du projet
+git init
+git add .
+git commit -m "chore: initial WordPress Docker stack"
+
+# 2. Créer un dépôt vide sur GitHub (sans README ni .gitignore)
+#    puis lier le remote :
+git remote add origin https://github.com/<votre-organisation>/wordpress-docker.git
+
+# 3. Pousser la branche principale
+git branch -M main
+git push -u origin main
+```
+
+> ⚠️ Le fichier `.env` est dans `.gitignore` — vos mots de passe ne seront **jamais**
+> poussés sur GitHub. Seul `.env.example` (sans valeurs sensibles) est versionné.
+
+---
+
 ## Prérequis
 
 - Docker Desktop ≥ 4.x (ou Docker Engine + Compose plugin)
+- Git ≥ 2.x (pour le clonage)
 - Make (optionnel mais recommandé)
 - VSCode avec les extensions listées dans `.vscode/extensions.json`
 
@@ -51,7 +122,8 @@
 ## Démarrage rapide
 
 ```bash
-# 1. Cloner / décompresser le projet
+# 1. Cloner le dépôt (voir section "Obtenir le projet depuis GitHub")
+git clone https://github.com/<votre-organisation>/wordpress-docker.git
 cd wordpress-docker
 
 # 2. Copier et adapter les variables d'environnement
